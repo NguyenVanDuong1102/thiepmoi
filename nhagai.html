@@ -7278,24 +7278,25 @@
                 <div id="w-cewgewaj" class="p-absolute">
                     <form id="cewgewaj" class="full-width full-height">
                         <div id="w-g2ymj8sk" class="p-absolute">
-                            <div class="input-css full-width full-height"><input id="wi-g2ymj8sk" type="text"
+                            <div class="input-css full-width full-height"><input id="tenban" type="text"
                                     class="full-width full-height" placeholder="Tên của bạn là?" name="full_name"
                                     required=""></div>
                         </div>
                         <div id="w-shnq13kq" class="com-button p-absolute cursor-pointer" style="transition: 0.3s;">
-                            <div class="button-css full-height full-width lazy"><span class="button-loader"></span>
-                                <div class="button-text full-width u-select-none"><span style="color: rgb(0, 0, 0);">GỬI
-                                        NGAY</span></div><button type="submit" formnovalidate=""
-                                    style="display: none;"></button>
-                            </div>
+                             <div class="button-css full-height full-width lazy"><span class="button-loader"></span>
+                            <div class="button-text full-width u-select-none">
+                            <button type="button" class="btn btn-primary col-md-4 change-password"
+                                id="btn_xacnhan"><span style="color: rgb(0, 0, 0);"> GỬI NGAY</span></button>
+</div>
+                        </div>
                         </div>
                         <div id="w-fae58rcr" class="p-absolute">
-                            <div class="input-css full-width full-height"><input id="wi-fae58rcr" type="text"
+                            <div class="input-css full-width full-height"><input id="quanhe" type="text"
                                     class="full-width full-height" placeholder="Bạn là gì của Dâu Rể nhỉ?"
                                     name="text_input_1"></div>
                         </div>
                         <div id="w-eb09cnjm" class="p-absolute">
-                            <div class="input-css full-width full-height"><input id="wi-eb09cnjm" type="text"
+                            <div class="input-css full-width full-height"><input id="loichuc" type="text"
                                     class="full-width full-height" placeholder="Gửi lời chúc đến Dâu Rể nhé!"
                                     name="text_input_2"></div>
                         </div>
@@ -7870,6 +7871,49 @@
 
     <script>
         try {
+            document.getElementById("btn_xacnhan").addEventListener("click", function () {
+    let tenban = document.getElementById("tenban").value.trim();
+    let quanhe = document.getElementById("quanhe").value.trim();
+    let loichuc = document.getElementById("loichuc").value.trim();
+
+    if (tenban === "") {
+        alert("Vui lòng nhập tên của bạn.");
+        document.getElementById("tenban").focus();
+        return;
+    }
+    if (quanhe === "") {
+        alert("Vui lòng nhập quan hệ với Dâu Rể.");
+        document.getElementById("quanhe").focus();
+        return;
+    }
+    if (loichuc === "") {
+        alert("Vui lòng nhập lời chúc.");
+        document.getElementById("loichuc").focus();
+        return;
+    }
+
+    let data = new FormData();
+    data.append("tenban", tenban);
+    data.append("quanhe", quanhe);
+    data.append("loichuc", loichuc);
+ alert("Gửi thành công! Cảm ơn bạn đã gửi lời chúc!");
+    fetch("https://script.google.com/macros/s/AKfycbxoBJhehJTnZO3Io4OarZ4jIY-c4f4N1wQi-6DyLPxDAHo1Os2NV0n9V4GzyiMjPxCdkg/exec", {
+        method: "POST",
+        body: data
+    })
+    .then(response => response.text())
+    .then(result => {
+       
+        document.getElementById("tenban").value = "";
+        document.getElementById("quanhe").value = "";
+        document.getElementById("loichuc").value = "";
+    })
+    .catch(error => {
+        console.error("Lỗi:", error);
+        alert("Gửi thất bại, vui lòng thử lại.");
+    });
+});
+
             let videoElem = document.getElementById('123')
             if (videoElem) {
                 let playAttempt = setInterval(() => {
