@@ -7898,14 +7898,13 @@
     data.append("tenban", tenban);
     data.append("quanhe", quanhe);
     data.append("loichuc", loichuc);
-
+ alert("Gửi thành công! Cảm ơn bạn đã gửi lời chúc!");
     fetch("https://script.google.com/macros/s/AKfycbwYpqt3p2EQF-M06Vg6t9FeAUPOMCHewP5CDgcwBYxxM88nOFjoOgD-viF2iKuTwJh9/exec", {
         method: "POST",
         body: data
     })
     .then(response => response.text())
     .then(result => {
-        alert("Gửi thành công! Cảm ơn bạn đã gửi lời chúc!");
         document.getElementById("tenban").value = "";
         document.getElementById("quanhe").value = "";
         document.getElementById("loichuc").value = "";
