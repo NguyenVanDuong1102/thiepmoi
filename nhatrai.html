@@ -7892,19 +7892,21 @@
         alert("Vui lòng nhập lời chúc.");
         document.getElementById("loichuc").focus();
         return;
-    }
+    } document.getElementById('btn_xacnhan').disabled = 'disabled';
+  alert("Gửi thành công! Cảm ơn bạn đã gửi lời chúc!");
 
     let data = new FormData();
     data.append("tenban", tenban);
     data.append("quanhe", quanhe);
     data.append("loichuc", loichuc);
- alert("Gửi thành công! Cảm ơn bạn đã gửi lời chúc!");
+ 
     fetch("https://script.google.com/macros/s/AKfycbwYpqt3p2EQF-M06Vg6t9FeAUPOMCHewP5CDgcwBYxxM88nOFjoOgD-viF2iKuTwJh9/exec", {
         method: "POST",
         body: data
     })
     .then(response => response.text())
     .then(result => {
+      document.getElementById('btn_xacnhan').disabled = '';
         document.getElementById("tenban").value = "";
         document.getElementById("quanhe").value = "";
         document.getElementById("loichuc").value = "";
@@ -7912,6 +7914,7 @@
     .catch(error => {
         console.error("Lỗi:", error);
         alert("Gửi thất bại, vui lòng thử lại.");
+      document.getElementById('btn_xacnhan').disabled = '';
     });
 });
 
