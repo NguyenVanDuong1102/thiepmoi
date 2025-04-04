@@ -4,7 +4,7 @@ $(function() {
     
     // Load page
     let queryString = window.location.search.substring(1);
-    let page_load = queryString === 'thiepmoionline' ? 'nhatrai.html' :  'nhagai.html';
+    let page_load = queryString.split('&')[0] === 'thiepmoionline' ? 'nhatrai.html' :  'nhagai.html';
     $("body").load(page_load, function() {
     });
 });
