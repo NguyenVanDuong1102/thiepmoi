@@ -7283,11 +7283,8 @@
                                     required=""></div>
                         </div>
                         <div id="w-shnq13kq" class="com-button p-absolute cursor-pointer" style="transition: 0.3s;">
-                            <div class="button-css full-height full-width lazy"><span class="button-loader"></span>
-                                <div class="button-text full-width u-select-none"><span style="color: rgb(0, 0, 0);">GỬI
-                                        NGAY</span></div><button type="submit" formnovalidate=""
-                                    style="display: none;"></button>
-                            </div>
+                             <button type="button" class="btn btn-primary col-md-4 change-password"
+                                id="btn_xacnhan"><span style="color: rgb(0, 0, 0);"> GỬI NGAY</span></button>
                         </div>
                         <div id="w-fae58rcr" class="p-absolute">
                             <div class="input-css full-width full-height"><input id="wi-fae58rcr" type="text"
@@ -7765,10 +7762,12 @@
                         }, "g2ymj8sk": {
                             "type": "input", "specials":
                                 { "field_name": "full_name", "field_placeholder": "Tên của bạn là?", "required": true }, "id": "g2ymj8sk", "$parent": "cewgewaj"
-                        }, "shnq13kq": {
-                            "type": "button", "specials":
-                                { "text": "<span style=\"color: rgb(0, 0, 0);\">GỬI NGAY</span>" }, "id": "shnq13kq", "events": [{ "action": "animation_hover", "id": "u04qjdqi", "target": null, "type": "hover" }], "desktop": { "fontSize": 14 }, "mobile": { "fontSize": 14 }, "$parent": "cewgewaj"
-                        }, "fae58rcr": {
+                        },
+                  // "shnq13kq": {
+                  //           "type": "button", "specials":
+                  //               { "text": "<span style=\"color: rgb(0, 0, 0);\">GỬI NGAY</span>" }, "id": "shnq13kq", "events": [{ "action": "animation_hover", "id": "u04qjdqi", "target": null, "type": "hover" }], "desktop": { "fontSize": 14 }, "mobile": { "fontSize": 14 }, "$parent": "cewgewaj"
+                  //       },
+                  "fae58rcr": {
                             "type": "input", "specials":
                                 { "field_name": "text_input_1", "field_placeholder": "Bạn là gì của Dâu Rể nhỉ?" }, "id": "fae58rcr", "$parent": "cewgewaj"
                         }, "eb09cnjm": {
@@ -7870,6 +7869,49 @@
 
     <script>
         try {
+          document.getElementById("btn_xacnhan").addEventListener("click", function () {
+    let tenban = document.getElementById("tenban").value.trim();
+    let quanhe = document.getElementById("quanhe").value.trim();
+    let loichuc = document.getElementById("loichuc").value.trim();
+
+    if (tenban === "") {
+        alert("Vui lòng nhập tên của bạn.");
+        document.getElementById("tenban").focus();
+        return;
+    }
+    if (quanhe === "") {
+        alert("Vui lòng nhập quan hệ với Dâu Rể.");
+        document.getElementById("quanhe").focus();
+        return;
+    }
+    if (loichuc === "") {
+        alert("Vui lòng nhập lời chúc.");
+        document.getElementById("loichuc").focus();
+        return;
+    }
+
+    let data = new FormData();
+    data.append("tenban", tenban);
+    data.append("quanhe", quanhe);
+    data.append("loichuc", loichuc);
+
+    fetch("https://script.google.com/macros/s/AKfycbwYpqt3p2EQF-M06Vg6t9FeAUPOMCHewP5CDgcwBYxxM88nOFjoOgD-viF2iKuTwJh9/exec", {
+        method: "POST",
+        body: data
+    })
+    .then(response => response.text())
+    .then(result => {
+        alert("Gửi thành công! Cảm ơn bạn đã gửi lời chúc!");
+        document.getElementById("tenban").value = "";
+        document.getElementById("quanhe").value = "";
+        document.getElementById("loichuc").value = "";
+    })
+    .catch(error => {
+        console.error("Lỗi:", error);
+        alert("Gửi thất bại, vui lòng thử lại.");
+    });
+});
+
             let videoElem = document.getElementById('123')
             if (videoElem) {
                 let playAttempt = setInterval(() => {
