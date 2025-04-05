@@ -7142,7 +7142,7 @@
                         <div class="text-block">
                             <h1 class="text-block-css full-width">Thôn Mia,An Hà, Lạng Giang,Bắc Giang<br></h1>
                         </div>
-                    </div><a href="https://s.app.goo.gl/PFELus7xjkqtrBpa9" id="w-qi4cu8ei"
+                    </div><a href="https://maps.app.goo.gl/PFELus7xjkqtrBpa9" id="w-qi4cu8ei"
                         class="com-button p-absolute is-animation cursor-pointer">
                         <div class="button-css full-height full-width lazy"><span class="button-loader"></span>
                             <div class="button-text full-width u-select-none">Xem Chỉ Đường</div>
@@ -7150,7 +7150,7 @@
                     </a>
                     <div id="w-soiivc27" class="com-html-box p-absolute">
                         <div class="frame-html-box full-width full-height"><iframe
-                                src="https://www.google.com/s/embed?pb=!1m17!1m12!1m3!1d3714.0585890571383!2d106.23160107494094!3d21.42694198032392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDI1JzM3LjAiTiAxMDbCsDE0JzAzLjAiRQ!5e0!3m2!1svi!2s!4v1742569389642!5m2!1svi!2s"
+                                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3714.0585890571383!2d106.23160107494094!3d21.42694198032392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDI1JzM3LjAiTiAxMDbCsDE0JzAzLjAiRQ!5e0!3m2!1svi!2s!4v1742569389642!5m2!1svi!2s"
                                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe></div>
                     </div>
@@ -7354,7 +7354,7 @@
         elements.sort((a, b) => ~~getComputedStyle(a).getPropertyValue('--type') - getComputedStyle(b).getPropertyValue('--type'))
 
         function handleLazyLoad() {
-            const unmonitoring = new Weak()
+            const unmonitoring = new WeakMap()
 
             elements.forEach(el => {
                 const scrollY = window.scrollY || window.scrollTop || 0
